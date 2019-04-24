@@ -19,4 +19,4 @@ import NxFetch from 'next-fetch';
 ```
 
 ## resources:
-- https://github.com/afeiship
+- https://github.com/matthew-andrews/isomorphic-fetch
