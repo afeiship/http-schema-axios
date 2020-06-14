@@ -1,6 +1,6 @@
 {
   "name": "@feizheng/next-fetch",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Abstract for browser or node.",
   "homepage": "https://github.com/afeiship/next-fetch",
   "author": {
@@ -33,13 +33,13 @@
     "yargs": "^15.3.1"
   },
   "dependencies": {
+    "@feizheng/next-abstract-request": "^1.0.0",
     "@feizheng/next-content-type": "^1.1.4",
     "@feizheng/next-data-transform": "^1.1.2",
     "@feizheng/next-deep-assign": "^1.1.4",
     "@feizheng/next-delay": "^1.1.2",
     "@feizheng/next-js-core2": "^2.5.0",
-    "@feizheng/next-param": "^2.0.0",
-    "@feizheng/next-stub-singleton": "^1.1.1"
+    "@feizheng/next-param": "^2.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

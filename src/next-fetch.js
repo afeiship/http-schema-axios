@@ -6,7 +6,7 @@
   var nxDeepAssign = require('@feizheng/next-deep-assign');
   var nxParam = require('@feizheng/next-param');
   var nxDelay = require('@feizheng/next-delay');
-  var nxStubSingleton = nx.stubSingleton || require('@feizheng/next-stub-singleton');
+  var NxAbstractRequest = nx.AbstractRequest || require('@feizheng/next-abstract-request');
 
   var DEFAULT_OPTIONS = {
     dataType: 'json',
@@ -16,10 +16,10 @@
   };
 
   var NxFetch = nx.declare('nx.Fetch', {
-    statics: nx.mix(null, nxStubSingleton()),
+    extends: NxAbstractRequest,
     methods: {
-      init: function (inOptions) {
-        this.options = nx.mix(null, DEFAULT_OPTIONS, inOptions);
+      defaults: function () {
+        return DEFAULT_OPTIONS;
       },
       request: function (inUrl, inMethod, inData, inOptions) {
         var options = nx.mix(null, this.options, inOptions);
@@ -38,11 +38,6 @@
             .then(nxDelay(options.delay))
             .then(responseHandler)
           : options.fetch(url, config).then(responseHandler);
-      },
-      'get,post,put,patch,delete,head': function (inMethod) {
-        return function (inUrl, inData, inOptions) {
-          return this.request(inUrl, inMethod, inData, inOptions);
-        };
       }
     }
   });
