@@ -6,17 +6,6 @@
 npm install -S @feizheng/next-fetch
 ```
 
-## apis
-| api     | params                               | description    |
-| ------- | ------------------------------------ | -------------- |
-| request | (inUrl, inMethod, inData, inOptions) | The entry api  |
-| get     | (inUrl, inData, inOptions)           | The get api    |
-| post    | (inUrl, inData, inOptions)           | The post api   |
-| delete  | (inUrl, inData, inOptions)           | The delete api |
-| put     | (inUrl, inData, inOptions)           | The put api    |
-| head    | (inUrl, inData, inOptions)           | The head api   |
-| patch   | (inUrl, inData, inOptions)           | The patch api  |
-
 ## options
 | option       | type        | default               | description                       |
 | ------------ | ----------- | --------------------- | --------------------------------- |
@@ -43,3 +32,6 @@ http.get('https://api.github.com/users/afeiship').then(res=>{
     // .....
 // }
 ```
+
+## resources
+- https://github.com/afeiship/next-abstract-request
