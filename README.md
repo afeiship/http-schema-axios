@@ -1,22 +1,32 @@
 # next-fetch
-> Fetch wrapper for `isomorphicFetch`
+> Abstract for browser or node.
 
-## install:
+## installation
 ```bash
-npm install -S afeiship/next-fetch --registry=https://registry.npm.taobao.org
+npm install -S @feizheng/next-fetch
 ```
 
-## apis:
-| api | params | description   |
-|-----|--------|---------------|
-| get | -      | desc balabala |
+## apis
+| api    | params | description   |
+| ------ | ------ | ------------- |
+| get    | -      | desc balabala |
+| post   | -      | desc balabala |
+| put    | -      | desc balabala |
+| patch  | -      | desc balabala |
+| delete | -      | desc balabala |
+| head   | -      | desc balabala |
 
-## usage:
+## usage
 ```js
-import NxFetch from 'next-fetch';
+import NxFetch from '@feizheng/next-fetch';
 
-// code goes here:
+const http = new NxFetch().getInstance();
+
+// methods list:
+http.get
+http.post
+http.put
+http.patch
+http.delete
+http.head
 ```
-
-## resources:
-- https://github.com/matthew-andrews/isomorphic-fetch

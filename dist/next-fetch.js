@@ -1,3 +1,12 @@
+/*!
+ * name: @feizheng/next-fetch
+ * description: Abstract for browser or node.
+ * homepage: https://github.com/afeiship/next-fetch
+ * version: 1.0.0
+ * date: 2020-06-14T09:49:01.424Z
+ * license: MIT
+ */
+
 (function () {
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('@feizheng/next-js-core2');
@@ -51,3 +60,5 @@
     module.exports = NxFetch;
   }
 })();
+
+//# sourceMappingURL=next-fetch.js.map
