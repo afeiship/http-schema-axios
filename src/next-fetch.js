@@ -8,7 +8,6 @@
   var nxParam = nx.param || require('@feizheng/next-param');
   var nxDelay = nx.delay || require('@feizheng/next-delay');
 
-
   var DEFAULT_OPTIONS = {
     dataType: 'json',
     delay: 0,
