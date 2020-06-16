@@ -2,8 +2,8 @@
  * name: @feizheng/next-fetch
  * description: Abstract for browser or node.
  * homepage: https://github.com/afeiship/next-fetch
- * version: 1.1.2
- * date: 2020-06-14T13:36:14.021Z
+ * version: 1.1.3
+ * date: 2020-06-16T06:26:04.799Z
  * license: MIT
  */
 
@@ -11,12 +11,12 @@
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('@feizheng/next-js-core2');
   var NxDataTransform = nx.DataTransform || require('@feizheng/next-data-transform');
+  var NxAbstractRequest = nx.AbstractRequest || require('@feizheng/next-abstract-request');
   var nxContentType = nx.contentType || require('@feizheng/next-content-type');
   var nxDeepAssign = nx.deepAssign || require('@feizheng/next-deep-assign');
   var nxParam = nx.param || require('@feizheng/next-param');
   var nxDelay = nx.delay || require('@feizheng/next-delay');
-  var NxAbstractRequest = nx.AbstractRequest || require('@feizheng/next-abstract-request');
-  var GET = 'get';
+
 
   var DEFAULT_OPTIONS = {
     dataType: 'json',
@@ -33,7 +33,7 @@
       },
       request: function (inUrl, inMethod, inData, inOptions) {
         var options = nx.mix(null, this.options, inOptions);
-        var isGET = inMethod === GET;
+        var isGET = inMethod === 'get';
         var body = isGET ? null : NxDataTransform[options.dataType](inData);
         var url = isGET ? nxParam(inData, inUrl) : inUrl;
         var headers = { 'Content-Type': nxContentType(options.dataType) };

@@ -2,11 +2,12 @@
   var global = global || this || window || Function('return this')();
   var nx = global.nx || require('@feizheng/next-js-core2');
   var NxDataTransform = nx.DataTransform || require('@feizheng/next-data-transform');
+  var NxAbstractRequest = nx.AbstractRequest || require('@feizheng/next-abstract-request');
   var nxContentType = nx.contentType || require('@feizheng/next-content-type');
   var nxDeepAssign = nx.deepAssign || require('@feizheng/next-deep-assign');
   var nxParam = nx.param || require('@feizheng/next-param');
   var nxDelay = nx.delay || require('@feizheng/next-delay');
-  var NxAbstractRequest = nx.AbstractRequest || require('@feizheng/next-abstract-request');
+
 
   var DEFAULT_OPTIONS = {
     dataType: 'json',
