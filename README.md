@@ -11,7 +11,6 @@ npm install -S @feizheng/next-fetch
 | ------------ | ----------- | --------------------- | --------------------------------- |
 | fetch        | Function    | require('node-fetch') | Defult fetch implement            |
 | dataType     | String      | json                  | json/raw/urlencoded/multipart     |
-| delay        | Number      | 0                     | The every request delay timer(ms) |
 | responseType | String/Null | json                  | json/text/blob/null               |
 
 ## usage

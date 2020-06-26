@@ -2,8 +2,8 @@
  * name: @feizheng/next-fetch
  * description: Abstract for browser or node.
  * homepage: https://github.com/afeiship/next-fetch
- * version: 1.1.3
- * date: 2020-06-16T06:26:04.799Z
+ * version: 1.2.0
+ * date: 2020-06-26T09:14:51.537Z
  * license: MIT
  */
 
@@ -15,12 +15,9 @@
   var nxContentType = nx.contentType || require('@feizheng/next-content-type');
   var nxDeepAssign = nx.deepAssign || require('@feizheng/next-deep-assign');
   var nxParam = nx.param || require('@feizheng/next-param');
-  var nxDelay = nx.delay || require('@feizheng/next-delay');
-
 
   var DEFAULT_OPTIONS = {
     dataType: 'json',
-    delay: 0,
     fetch: global.fetch,
     responseType: 'json'
   };
@@ -42,12 +39,7 @@
           return options.responseType ? res[options.responseType]() : res;
         };
 
-        return options.delay
-          ? options
-            .fetch(url, config)
-            .then(nxDelay(options.delay))
-            .then(responseHandler)
-          : options.fetch(url, config).then(responseHandler);
+        return options.fetch(url, config).then(responseHandler);
       }
     }
   });
