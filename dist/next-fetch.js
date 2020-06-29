@@ -2,8 +2,8 @@
  * name: @feizheng/next-fetch
  * description: Abstract for browser or node.
  * homepage: https://github.com/afeiship/next-fetch
- * version: 1.2.1
- * date: 2020-06-26T09:49:25.803Z
+ * version: 1.3.0
+ * date: 2020-06-29T02:09:16.130Z
  * license: MIT
  */
 
@@ -30,7 +30,7 @@
       defaults: function () {
         return DEFAULT_OPTIONS;
       },
-      request: function (inUrl, inMethod, inData, inOptions) {
+      request: function (inMethod, inUrl, inData, inOptions) {
         var options = nx.mix(null, this.options, inOptions);
         var isGET = inMethod === 'get';
         var body = isGET ? null : NxDataTransform[options.dataType](inData);

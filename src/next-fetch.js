@@ -21,7 +21,7 @@
       defaults: function () {
         return DEFAULT_OPTIONS;
       },
-      request: function (inUrl, inMethod, inData, inOptions) {
+      request: function (inMethod, inUrl, inData, inOptions) {
         var options = nx.mix(null, this.options, inOptions);
         var isGET = inMethod === 'get';
         var body = isGET ? null : NxDataTransform[options.dataType](inData);
