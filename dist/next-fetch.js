@@ -2,8 +2,8 @@
  * name: @feizheng/next-fetch
  * description: Abstract for browser or node.
  * homepage: https://github.com/afeiship/next-fetch
- * version: 1.3.0
- * date: 2020-06-29T02:09:16.130Z
+ * version: 1.3.2
+ * date: 2020-06-29T02:14:31.654Z
  * license: MIT
  */
 
