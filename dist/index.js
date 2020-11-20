@@ -3,7 +3,7 @@
  * description: Abstract for browser or node.
  * homepage: https://github.com/afeiship/next-fetch
  * version: 1.0.0
- * date: 2020-11-20 23:02:20
+ * date: 2020-11-20 23:49:33
  * license: MIT
  */
 
