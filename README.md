@@ -20,7 +20,7 @@ npm install -S @jswork/next-fetch
 
 ## usage
 ```js
-import NxFetch from '@feizheng/next-fetch';
+import NxFetch from '@jswork/next-fetch';
 
 const http = NxFetch.getInstance({ responseType:'json' });
 
