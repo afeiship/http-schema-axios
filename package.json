@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Abstract for browser or node.",
   "homepage": "https://github.com/afeiship/next-fetch",
   "author": {
