@@ -12,5 +12,12 @@
         done();
       });
     });
+
+    test('request with a full object url', (done) => {
+      http.get({ url: 'https://api.github.com/users/afeiship', method: 'get' }).then((res) => {
+        expect(res.repos_url).toBe('https://api.github.com/users/afeiship/repos');
+        done();
+      });
+    });
   });
 })();
