@@ -17,6 +17,7 @@ Rakefile
 .vscode
 .release-it.json
 docs
+sites
 
 # vscode localhistory
 .history
