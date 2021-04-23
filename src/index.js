@@ -7,11 +7,13 @@
   var nxDeepAssign = nx.deepAssign || require('@jswork/next-deep-assign');
   var nxParam = nx.param || require('@jswork/next-param');
   var nxToAction = nx.toAction || require('@jswork/next-to-action');
+  var nxCancelableFetch = nx.cancelableFetch || require('@jswork/next-cancelable-fetch');
 
   var DEFAULT_OPTIONS = {
     dataType: 'json',
-    fetch: global.fetch,
-    responseType: 'json'
+    responseType: 'json',
+    cancelable: false,
+    fetch: global.fetch
   };
 
   var NxFetch = nx.declare('nx.Fetch', {
@@ -22,7 +24,8 @@
       },
       request: function (inMethod, inUrl, inData, inOptions) {
         var options = nx.mix(null, this.options, inOptions);
-        var isGET = inMethod === 'get';
+        var httpRequest = options.cancelable ? nxCancelableFetch : options.fetch;
+        var isGET = String(inMethod).toLowerCase() === 'get';
         var body = isGET ? null : NxDataTransform[options.dataType](inData);
         var url = isGET ? nxParam(inData, inUrl) : inUrl;
         var headers = { 'Content-Type': nxContentType(options.dataType) };
@@ -30,7 +33,8 @@
         var responseHandler = options.responseType
           ? nxToAction(options.responseType)
           : nx.stubValue;
-        return options.fetch(url, config).then(responseHandler);
+
+        return httpRequest(url, config).then(responseHandler);
       }
     }
   });

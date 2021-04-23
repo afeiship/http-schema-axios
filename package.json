@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@jswork/next-abstract-request": "^1.0.0",
+    "@jswork/next-cancelable-fetch": "^1.0.0",
     "@jswork/next-content-type": "^1.0.0",
     "@jswork/next-data-transform": "^1.0.0",
     "@jswork/next-deep-assign": "^1.0.0",
