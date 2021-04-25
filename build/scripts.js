@@ -1,4 +1,4 @@
-(function() {
+(function () {
   'use strict';
 
   const gulp = require('gulp');
@@ -7,9 +7,10 @@
     pattern: ['gulp-*', 'gulp.*', 'del', '@jswork/gulp-*']
   });
 
-  gulp.task('scripts', function() {
+  gulp.task('scripts', function () {
     return gulp
       .src('src/*.js')
+      // .pipe($.babel())
       .pipe($.jswork.pkgHeader())
       .pipe(gulp.dest('dist'))
       .pipe($.size({ title: '[ default size ]:' }))

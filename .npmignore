@@ -10,6 +10,7 @@ gulpfile.js
 
 .editorconfig
 .prettierrc
+.babelrc
 Gemfile
 jest.config.js
 LICENSE.txt
