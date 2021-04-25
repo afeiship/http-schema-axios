@@ -38,11 +38,10 @@
         var path = isGET ? nxParam(inData, inUrl) : inUrl;
         var headers = { 'Content-Type': nxContentType(options.dataType) };
         var config = nxDeepAssign({ method: inMethod, body: body, headers: headers }, options);
+        var requestOpts = this.interceptor.compose({ url: path, config }, 'request');
         var responseHandler = options.responseType
           ? nxToAction(options.responseType)
           : nx.stubValue;
-
-        var requestOpts = this.interceptor.compose({ url: path, config }, 'request');
 
         return new Promise(function (resolve, reject) {
           httpRequest(requestOpts.url, config)
