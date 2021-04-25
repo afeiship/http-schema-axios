@@ -14,16 +14,17 @@
     dataType: 'json',
     responseType: 'json',
     cancelable: false,
-    fetch: global.fetch,
-    interceptors: []
+    interceptors: [],
+    response: nx.stubValue,
+    fetch: global.fetch
   };
 
   var NxFetch = nx.declare('nx.Fetch', {
     extends: NxAbstractRequest,
     methods: {
-      constructor: function (inOptions) {
+      init: function (inOptions) {
         this.base(inOptions);
-        this.interceptor = NxInterceptor.getInstance({ items: this.options.interceptors });
+        this.interceptor = new NxInterceptor({ items: this.options.interceptors });
       },
       defaults: function () {
         return DEFAULT_OPTIONS;
@@ -42,14 +43,15 @@
           : nx.stubValue;
 
         var requestOpts = this.interceptor.compose({ url: path, config }, 'request');
-        var url = requestOpts.url;
-        var config = nx.delete(requestOpts, ['url']);
 
         return new Promise(function (resolve, reject) {
-          httpRequest(url, config)
+          httpRequest(path, config)
             .then(responseHandler)
             .then(function (response) {
-              resolve(self.interceptor.compose(response, 'response'));
+              var params = nx.mix({ data: response }, requestOpts);
+              var composeRes = self.interceptor.compose(params, 'response');
+              var res = self.options.response(composeRes);
+              resolve(res);
             })
             .catch(reject);
         });
