@@ -45,7 +45,7 @@
         var requestOpts = this.interceptor.compose({ url: path, config }, 'request');
 
         return new Promise(function (resolve, reject) {
-          httpRequest(path, config)
+          httpRequest(requestOpts.url, config)
             .then(responseHandler)
             .then(function (response) {
               var params = nx.mix({ data: response }, requestOpts);
