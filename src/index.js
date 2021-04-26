@@ -25,7 +25,8 @@
     extends: NxAbstractRequest,
     methods: {
       init: function (inOptions) {
-        this.base(inOptions);
+        var parent = this.$base;
+        parent.init.call(this, inOptions);
         this.interceptor = new NxInterceptor({ items: this.options.interceptors });
         this.httpRequest = nxApplyFetchMiddleware(middlewares)(this.options.fetch);
       },
@@ -41,9 +42,7 @@
         var headers = { 'Content-Type': nxContentType(options.dataType) };
         var config = nxDeepAssign({ method: inMethod, body: body, headers: headers }, options);
         var requestOpts = this.interceptor.compose({ url: path, config }, 'request');
-        var responseHandler = options.responseType
-          ? nxToAction(options.responseType)
-          : nx.stubValue;
+        var responseHandler = options.responseType ? nxToAction(options.responseType) : nx.stubValue;
 
         return new Promise(function (resolve, reject) {
           self
@@ -52,7 +51,7 @@
             .then(function (response) {
               var params = nx.mix({ data: response }, requestOpts);
               var composeRes = self.interceptor.compose(params, 'response');
-              var res = self.options.response(composeRes);
+              var res = options.response(composeRes);
               resolve(res);
             })
             .catch(reject);
