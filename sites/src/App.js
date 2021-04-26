@@ -9,12 +9,14 @@ const http = NxFetch.getInstance({
     return data;
   },
   interceptors: [
-    { name: 'res1', type: 'response', fn: res1 },
-    { name: 'remove-url-field', type: 'response', fn: removeUrlField },
-    { name: 'normalize-date', type: 'response', fn: normalizeDate },
-    { name: 'trim-null', type: 'response', fn: trimNull }
+    { type: 'response', fn: res1 },
+    { type: 'response', fn: removeUrlField },
+    { type: 'response', fn: normalizeDate },
+    { name: 'trim-nil', type: 'response', fn: trimNull }
   ]
 });
+
+// console.log(http);
 
 function App() {
   // console.log(NxFetch);
@@ -24,7 +26,7 @@ function App() {
       <button
         onClick={(e) => {
           const res = http
-            .get('https://api.github.com/users/afeiship', { timeout: 100, cancelable: true })
+            .get('https://api.github.com/users/afeiship', { timeout: 10 * 1000, cancelable: true })
             .then((res) => {
               console.log(res);
             })
