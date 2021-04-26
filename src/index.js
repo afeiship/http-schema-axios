@@ -12,12 +12,15 @@
   var nxFetchWithTimeout = nx.fetchWithTimeout || require('@jswork/next-fetch-with-timeout');
   var nxFetchWithCancelable = nx.fetchWithCancelable || require('@jswork/next-fetch-with-cancelable');
   var middlewares = [nxFetchWithTimeout, nxFetchWithCancelable];
+  var stubData = function (response) {
+    return nx.get(response, 'data', null);
+  };
 
   var DEFAULT_OPTIONS = {
     dataType: 'json',
     responseType: 'json',
     interceptors: [],
-    response: nx.stubValue,
+    response: stubData,
     fetch: global.fetch
   };
 
