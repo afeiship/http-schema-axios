@@ -39,5 +39,25 @@
       const res = http.get('https://api.github.com/users/afeiship', { cancelable: true });
       expect(typeof res.cancel).toBe('function');
     });
+
+    test('request with transform should transform single request', (done) => {
+      http
+        .get('https://api.github.com/users/afeiship', {
+          transformRequest: (options) => {
+            options.url = options.url + `?ts=${Date.now()}`;
+            console.log(options);
+            return options;
+          },
+          transformResponse: (options) => {
+            return { username: options.login };
+          }
+        })
+        .then((res) => {
+          expect(res).toEqual({ username: 'afeiship' });
+        })
+        .finally((e) => {
+          done();
+        });
+    });
   });
 })();

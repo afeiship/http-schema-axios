@@ -39,11 +39,10 @@
         var options = nx.mix(null, this.options, inOptions);
         var isGET = String(inMethod).toLowerCase() === 'get';
         var body = isGET ? null : NxDataTransform[options.dataType](inData);
-        var transformRequest = isGET ? null : options.transformRequest(body);
         var path = isGET ? nxParam(inData, inUrl) : inUrl;
         var headers = { 'Content-Type': nxContentType(options.dataType) };
-        var config = nxDeepAssign({ method: inMethod, body: transformRequest, headers: headers }, options);
-        var requestOpts = this.interceptor.compose({ url: path, config }, 'request');
+        var config = nxDeepAssign({ method: inMethod, body: body, headers: headers }, options);
+        var requestOpts = options.transformRequest(this.interceptor.compose({ url: path, config }, 'request'));
         var responseHandler = options.responseType ? nxToAction(options.responseType) : nx.stubValue;
 
         return new Promise(function (resolve, reject) {
@@ -52,9 +51,8 @@
             .then(responseHandler)
             .then(function (response) {
               var params = nx.mix({ data: response }, requestOpts);
-              var composeRes = self.interceptor.compose(params, 'response');
-              var transformResponse = options.transformResponse(composeRes);
-              resolve(transformResponse);
+              var composeRes = options.transformResponse(self.interceptor.compose(params, 'response'));
+              resolve(composeRes);
             })
             .catch(reject);
         });
