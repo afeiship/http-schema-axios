@@ -12,16 +12,14 @@
   var nxFetchWithTimeout = nx.fetchWithTimeout || require('@jswork/next-fetch-with-timeout');
   var nxFetchWithCancelable = nx.fetchWithCancelable || require('@jswork/next-fetch-with-cancelable');
   var middlewares = [nxFetchWithTimeout, nxFetchWithCancelable];
-  var stubData = function (response) {
-    return nx.get(response, 'data', null);
-  };
 
   var DEFAULT_OPTIONS = {
     dataType: 'json',
     responseType: 'json',
     interceptors: [],
-    response: stubData,
-    fetch: global.fetch
+    fetch: global.fetch,
+    transformRequest: nx.stubValue,
+    transformResponse: nx.stubValue
   };
 
   var NxFetch = nx.declare('nx.Fetch', {
@@ -41,9 +39,10 @@
         var options = nx.mix(null, this.options, inOptions);
         var isGET = String(inMethod).toLowerCase() === 'get';
         var body = isGET ? null : NxDataTransform[options.dataType](inData);
+        var transformRequest = isGET ? null : options.transformRequest(body);
         var path = isGET ? nxParam(inData, inUrl) : inUrl;
         var headers = { 'Content-Type': nxContentType(options.dataType) };
-        var config = nxDeepAssign({ method: inMethod, body: body, headers: headers }, options);
+        var config = nxDeepAssign({ method: inMethod, body: transformRequest, headers: headers }, options);
         var requestOpts = this.interceptor.compose({ url: path, config }, 'request');
         var responseHandler = options.responseType ? nxToAction(options.responseType) : nx.stubValue;
 
@@ -54,8 +53,8 @@
             .then(function (response) {
               var params = nx.mix({ data: response }, requestOpts);
               var composeRes = self.interceptor.compose(params, 'response');
-              var res = options.response(composeRes);
-              resolve(res);
+              var transformResponse = options.transformResponse(composeRes);
+              resolve(transformResponse);
             })
             .catch(reject);
         });

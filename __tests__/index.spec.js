@@ -1,7 +1,10 @@
 (function () {
   const NxFetch = require('../src');
   const nodeFetch = require('node-fetch');
-  const http = new NxFetch({ fetch: nodeFetch });
+  const http = new NxFetch({
+    fetch: nodeFetch,
+    interceptors: [{ type: 'response', fn: (data) => nx.get(data, 'data') }]
+  });
 
   jest.setTimeout(30000);
 
