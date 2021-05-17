@@ -45,7 +45,6 @@
         .get('https://api.github.com/users/afeiship', {
           transformRequest: (options) => {
             options.url = options.url + `?ts=${Date.now()}`;
-            console.log(options);
             return options;
           },
           transformResponse: (options) => {

@@ -36,12 +36,13 @@
       },
       request: function (inMethod, inUrl, inData, inOptions) {
         var self = this;
+        var method = String(inMethod).toLowerCase();
         var options = nx.mix(null, this.options, inOptions);
-        var isGET = String(inMethod).toLowerCase() === 'get';
+        var isGET = method === 'get';
         var body = isGET ? null : NxDataTransform[options.dataType](inData);
         var path = isGET ? nxParam(inData, inUrl) : inUrl;
         var headers = { 'Content-Type': nxContentType(options.dataType) };
-        var config = nxDeepAssign({ method: inMethod, body: body, headers: headers }, options);
+        var config = nxDeepAssign({ method, body, headers }, options);
         var requestOpts = options.transformRequest(this.interceptor.compose({ url: path, config }, 'request'));
         var responseHandler = options.responseType ? nxToAction(options.responseType) : nx.stubValue;
 
