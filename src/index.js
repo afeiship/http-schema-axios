@@ -16,8 +16,8 @@
   var DEFAULT_OPTIONS = {
     dataType: 'json',
     responseType: 'json',
-    interceptors: [],
     fetch: global.fetch,
+    interceptors: [],
     transformRequest: nx.stubValue,
     transformResponse: nx.stubValue
   };
