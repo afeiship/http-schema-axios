@@ -42,17 +42,17 @@
 
     test('request with transform should transform single request', (done) => {
       http
-        .get('https://api.github.com/users/afeiship', {
+        .get('https://jsonplaceholder.typicode.com/todos/1', {
           transformRequest: (options) => {
             options.url = options.url + `?ts=${Date.now()}`;
             return options;
           },
           transformResponse: (options) => {
-            return { username: options.login };
+            return { title: options.title + '_' + options.id };
           }
         })
         .then((res) => {
-          expect(res).toEqual({ username: 'afeiship' });
+          expect(res).toEqual({ title: 'delectus aut autem_1' });
         })
         .finally((e) => {
           done();
