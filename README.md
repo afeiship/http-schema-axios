@@ -40,9 +40,6 @@ http.get('https://api.github.com/users/afeiship').then(res=>{
 // }
 ```
 
-## resources
-- https://github.com/afeiship/next-abstract-request
-
 ## license
 Code released under [the MIT license](https://github.com/afeiship/next-fetch/blob/master/LICENSE.txt).
 
