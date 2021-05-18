@@ -13,7 +13,7 @@
   var nxFetchWithCancelable = nx.fetchWithCancelable || require('@jswork/next-fetch-with-cancelable');
   var middlewares = [nxFetchWithTimeout, nxFetchWithCancelable];
 
-  var types = ['request', 'response', 'error'];
+  var TYPES = ['request', 'response', 'error'];
   var DEFAULT_OPTIONS = {
     dataType: 'json',
     responseType: 'json',
@@ -30,7 +30,7 @@
       init: function (inOptions) {
         var parent = this.$base;
         parent.init.call(this, inOptions);
-        this.interceptor = new NxInterceptor({ items: this.options.interceptors, types });
+        this.interceptor = new NxInterceptor({ items: this.options.interceptors, types: TYPES });
         this.httpRequest = nxApplyFetchMiddleware(middlewares)(this.options.fetch);
       },
       defaults: function () {
