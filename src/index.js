@@ -48,7 +48,7 @@
 
         return new Promise(function (resolve, reject) {
           self
-            .httpRequest(requestOpts.url, config)
+            .httpRequest(requestOpts.url, requestOpts.config)
             .then(responseHandler)
             .then(function (response) {
               var params = nx.mix({ data: response }, requestOpts);
