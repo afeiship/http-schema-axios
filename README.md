@@ -18,7 +18,7 @@ npm install -S @jswork/next-fetch
 | dataType          | String      | json                  | json/raw/urlencoded/multipart                        |
 | responseType      | String/Null | json                  | json/text/blob/null                                  |
 | interceptors      | Array       | []                    | Multiple interceptors. eg: { type:'request', fn: xx} |
-| transformReqeust  | Function    | nx.stubValue          | A special interceptor for only current request.      |
+| transformRequest  | Function    | nx.stubValue          | A special interceptor for only current request.      |
 | transformResponse | Function    | nx.stubValue          | A special interceptor for only current response.     |
 
 ## usage
