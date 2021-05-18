@@ -13,13 +13,15 @@
   var nxFetchWithCancelable = nx.fetchWithCancelable || require('@jswork/next-fetch-with-cancelable');
   var middlewares = [nxFetchWithTimeout, nxFetchWithCancelable];
 
+  var types = ['request', 'response', 'error'];
   var DEFAULT_OPTIONS = {
     dataType: 'json',
     responseType: 'json',
     fetch: global.fetch,
     interceptors: [],
     transformRequest: nx.stubValue,
-    transformResponse: nx.stubValue
+    transformResponse: nx.stubValue,
+    transformError: nx.stubValue
   };
 
   var NxFetch = nx.declare('nx.Fetch', {
@@ -28,7 +30,7 @@
       init: function (inOptions) {
         var parent = this.$base;
         parent.init.call(this, inOptions);
-        this.interceptor = new NxInterceptor({ items: this.options.interceptors });
+        this.interceptor = new NxInterceptor({ items: this.options.interceptors, types });
         this.httpRequest = nxApplyFetchMiddleware(middlewares)(this.options.fetch);
       },
       defaults: function () {
@@ -55,7 +57,10 @@
               var composeRes = options.transformResponse(self.interceptor.compose(params, 'response'));
               resolve(composeRes);
             })
-            .catch(reject);
+            .catch(function (error) {
+              var composeError = options.transformError(this.interceptor.compose(error, 'error'));
+              reject(composeError);
+            });
         });
       }
     }
