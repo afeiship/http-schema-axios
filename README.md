@@ -12,15 +12,15 @@ npm install -S @jswork/next-fetch
 ```
 
 ## options
-| option            | type        | default               | description                                          |
-| ----------------- | ----------- | --------------------- | ---------------------------------------------------- |
-| fetch             | Function    | require('node-fetch') | Defult fetch implement                               |
-| dataType          | String      | json                  | json/raw/urlencoded/multipart                        |
-| responseType      | String/Null | json                  | json/text/blob/null                                  |
-| interceptors      | Array       | []                    | Multiple interceptors. eg: { type:'request', fn: xx} |
-| transformRequest  | Function    | nx.stubValue          | A special interceptor for only current request.      |
-| transformResponse | Function    | nx.stubValue          | A special interceptor for only current response.     |
-| transformError    | Function    | nx.stubValue          | A special interceptor for only current error.        |
+| option            | type        | default      | description                                          |
+| ----------------- | ----------- | ------------ | ---------------------------------------------------- |
+| fetch             | Function    | window.fetch | Defult fetch implement                               |
+| dataType          | String      | json         | json/raw/urlencoded/multipart                        |
+| responseType      | String/Null | json         | json/text/blob/null                                  |
+| interceptors      | Array       | []           | Multiple interceptors. eg: { type:'request', fn: xx} |
+| transformRequest  | Function    | nx.stubValue | A special interceptor for only current request.      |
+| transformResponse | Function    | nx.stubValue | A special interceptor for only current response.     |
+| transformError    | Function    | nx.stubValue | A special interceptor for only current error.        |
 
 ## usage
 ```js
