@@ -45,17 +45,17 @@
         var path = isGET ? nxParam(inData, inUrl) : inUrl;
         var headers = { 'Content-Type': nxContentType(options.dataType) };
         var config = nxDeepAssign({ method, body, headers }, options);
-        var requestOpts = options.transformRequest(this.interceptor.compose({ url: path, config }, 'request'));
+        var composeRequest = options.transformRequest(this.interceptor.compose({ url: path, config }, 'request'));
         var responseHandler = options.responseType ? nxToAction(options.responseType) : nx.stubValue;
 
         return new Promise(function (resolve, reject) {
           self
-            .httpRequest(requestOpts.url, requestOpts.config)
+            .httpRequest(composeRequest.url, composeRequest.config)
             .then(responseHandler)
             .then(function (response) {
-              var params = nx.mix({ data: response }, requestOpts);
-              var composeRes = options.transformResponse(self.interceptor.compose(params, 'response'));
-              resolve(composeRes);
+              var params = nx.mix({ data: response }, composeRequest);
+              var composeResponse = options.transformResponse(self.interceptor.compose(params, 'response'));
+              resolve(composeResponse);
             })
             .catch(function (error) {
               var composeError = options.transformError(self.interceptor.compose(error, 'error'));
