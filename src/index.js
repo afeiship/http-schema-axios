@@ -17,6 +17,7 @@
   var DEFAULT_OPTIONS = {
     dataType: 'json',
     responseType: 'json',
+    contentType: 'json',
     fetch: global.fetch,
     interceptors: [],
     transformRequest: nx.stubValue,
@@ -43,7 +44,7 @@
         var isGET = method === 'get';
         var body = isGET ? null : NxDataTransform[options.dataType](inData);
         var path = isGET ? nxParam(inData, inUrl) : inUrl;
-        var headers = { 'Content-Type': nxContentType(options.dataType) };
+        var headers = { 'Content-Type': nxContentType(options.contentType) || options.contentType }; //? may be removed?
         var config = nxDeepAssign({ method, body, headers }, options);
         var composeRequest = options.transformRequest(this.interceptor.compose({ url: path, config }, 'request'));
         var responseHandler = options.responseType ? nxToAction(options.responseType) : nx.stubValue;
