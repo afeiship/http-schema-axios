@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-fetch",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Abstract for browser or node.",
   "homepage": "https://github.com/afeiship/next-fetch",
   "author": {
@@ -56,6 +56,11 @@
     "next",
     "fetch",
     "cancelable",
-    "interceptor"
+    "interceptor",
+    "timeout",
+    "transform",
+    "response",
+    "request",
+    "filter"
   ]
 }
