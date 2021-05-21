@@ -3,40 +3,12 @@
   var nx = global.nx || require('@jswork/next');
   var NxDataTransform = nx.DataTransform || require('@jswork/next-data-transform');
   var NxAbstractRequest = nx.AbstractRequest || require('@jswork/next-abstract-request');
-  var NxInterceptor = nx.Interceptor || require('@jswork/next-interceptor');
-  var nxContentType = nx.contentType || require('@jswork/next-content-type');
   var nxDeepAssign = nx.deepAssign || require('@jswork/next-deep-assign');
   var nxParam = nx.param || require('@jswork/next-param');
-  var nxToAction = nx.toAction || require('@jswork/next-to-action');
-  var nxApplyFetchMiddleware = nx.applyFetchMiddleware || require('@jswork/next-apply-fetch-middleware');
-  var nxFetchWithTimeout = nx.fetchWithTimeout || require('@jswork/next-fetch-with-timeout');
-  var nxFetchWithCancelable = nx.fetchWithCancelable || require('@jswork/next-fetch-with-cancelable');
-  var middlewares = [nxFetchWithTimeout, nxFetchWithCancelable];
-
-  var TYPES = ['request', 'response', 'error'];
-  var DEFAULT_OPTIONS = {
-    dataType: 'json',
-    responseType: 'json',
-    contentType: 'json',
-    fetch: global.fetch,
-    interceptors: [],
-    transformRequest: nx.stubValue,
-    transformResponse: nx.stubValue,
-    transformError: nx.stubValue
-  };
 
   var NxFetch = nx.declare('nx.Fetch', {
     extends: NxAbstractRequest,
     methods: {
-      init: function (inOptions) {
-        var parent = this.$base;
-        parent.init.call(this, inOptions);
-        this.interceptor = new NxInterceptor({ items: this.options.interceptors, types: TYPES });
-        this.httpRequest = nxApplyFetchMiddleware(middlewares)(this.options.fetch);
-      },
-      defaults: function () {
-        return DEFAULT_OPTIONS;
-      },
       request: function (inMethod, inUrl, inData, inOptions) {
         var self = this;
         var method = String(inMethod).toLowerCase();
@@ -44,15 +16,12 @@
         var isGET = method === 'get';
         var body = isGET ? null : NxDataTransform[options.dataType](inData);
         var path = isGET ? nxParam(inData, inUrl) : inUrl;
-        var headers = { 'Content-Type': nxContentType(options.contentType) || options.contentType }; //? may be removed?
-        var config = nxDeepAssign({ method, body, headers }, options);
+        var config = nxDeepAssign({ method, body }, options);
         var composeRequest = options.transformRequest(this.interceptor.compose({ url: path, config }, 'request'));
-        var responseHandler = options.responseType ? nxToAction(options.responseType) : nx.stubValue;
 
         return new Promise(function (resolve, reject) {
           self
             .httpRequest(composeRequest.url, composeRequest.config)
-            .then(responseHandler)
             .then(function (response) {
               var params = nx.mix({ data: response }, composeRequest);
               var composeResponse = options.transformResponse(self.interceptor.compose(params, 'response'));

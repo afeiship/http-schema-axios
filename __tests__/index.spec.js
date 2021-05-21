@@ -3,7 +3,9 @@
   const nodeFetch = require('node-fetch');
   const http = new NxFetch({
     fetch: nodeFetch,
-    interceptors: [{ type: 'response', fn: (data) => nx.get(data, 'data') }]
+    transformResponse: ({ data }) => {
+      return data;
+    }
   });
 
   jest.setTimeout(30000);
@@ -23,23 +25,6 @@
       });
     });
 
-    test('request with timeout should be reject/cancel(false) able will no be attached', (done) => {
-      const res = http
-        .get('https://api.github.com/users/afeiship', { timeout: 10 })
-        .catch((error) => {
-          expect(error.type).toBe('timeout');
-          expect(typeof res.cancel).toBe('undefined');
-        })
-        .finally(() => {
-          done();
-        });
-    });
-
-    test('request with canclable should have cancel method in promise prototype', () => {
-      const res = http.get('https://api.github.com/users/afeiship', { cancelable: true });
-      expect(typeof res.cancel).toBe('function');
-    });
-
     test('request with transform should transform single request', (done) => {
       http
         .get('https://jsonplaceholder.typicode.com/todos/1', {
@@ -47,14 +32,12 @@
             options.url = options.url + `?ts=${Date.now()}`;
             return options;
           },
-          transformResponse: (options) => {
-            return { title: options.title + '_' + options.id };
+          transformResponse: ({ data }) => {
+            return { title: data.title + '_' + data.id };
           }
         })
         .then((res) => {
           expect(res).toEqual({ title: 'delectus aut autem_1' });
-        })
-        .finally((e) => {
           done();
         });
     });
