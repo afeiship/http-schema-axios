@@ -4,6 +4,7 @@
   var NxDataTransform = nx.DataTransform || require('@jswork/next-data-transform');
   var NxAbstractRequest = nx.AbstractRequest || require('@jswork/next-abstract-request');
   var nxDeepAssign = nx.deepAssign || require('@jswork/next-deep-assign');
+  var nxContentType = nx.contentType || require('@jswork/next-content-type');
   var nxParam = nx.param || require('@jswork/next-param');
 
   var NxFetch = nx.declare('nx.Fetch', {
