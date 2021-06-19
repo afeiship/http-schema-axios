@@ -30,7 +30,8 @@
               resolve(composeResponse);
             })
             .catch(function (error) {
-              var composeError = options.transformError(self.interceptor.compose(error, 'error'));
+              var params = nx.mix({ data: error }, composeRequest);
+              var composeError = options.transformError(self.interceptor.compose(params, 'error'));
               reject(composeError);
             });
         });
