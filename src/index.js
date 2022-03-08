@@ -6,6 +6,7 @@
   var nxDeepAssign = nx.deepAssign || require('@jswork/next-deep-assign');
   var nxContentType = nx.contentType || require('@jswork/next-content-type');
   var nxParam = nx.param || require('@jswork/next-param');
+  var FormData = global.FormData || require('form-data');
 
   var NxFetch = nx.declare('nx.Fetch', {
     extends: NxAbstractRequest,
@@ -16,7 +17,8 @@
         var options = nx.mix(null, this.options, inOptions);
         var isGET = method === 'get';
         var body = isGET ? null : NxDataTransform[options.dataType](inData);
-        var headers = { 'Content-Type': nxContentType(options.dataType) };
+        var isBodyFormData = body instanceof FormData;
+        var headers = !isBodyFormData ? { 'Content-Type': nxContentType(options.dataType) } : {};
         var path = isGET ? nxParam(inData, inUrl) : inUrl;
         var config = nxDeepAssign({ method, body, headers }, options);
         var composeRequest = options.transformRequest(this.interceptor.compose({ url: path, config }, 'request'));
