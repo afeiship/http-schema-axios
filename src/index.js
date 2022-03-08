@@ -18,9 +18,10 @@
         var isGET = method === 'get';
         var body = isGET ? null : NxDataTransform[options.dataType](inData);
         var isBodyFormData = body instanceof FormData;
-        var headers = !isBodyFormData ? { 'Content-Type': nxContentType(options.dataType) } : {};
+        var headers = { 'Content-Type': nxContentType(options.dataType) };
         var path = isGET ? nxParam(inData, inUrl) : inUrl;
         var config = nxDeepAssign({ method, body, headers }, options);
+        if (isBodyFormData) delete config.headers['Content-Type'];
         var composeRequest = options.transformRequest(this.interceptor.compose({ url: path, config }, 'request'));
 
         return new Promise(function (resolve, reject) {
