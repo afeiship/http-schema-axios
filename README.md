@@ -1,5 +1,5 @@
-# next-fetch
-> Abstract for browser or node.
+# http-schema-axios
+> Http schema for axios.
 
 [![version][version-image]][version-url]
 [![license][license-image]][license-url]
@@ -7,51 +7,28 @@
 [![download][download-image]][download-url]
 
 ## installation
-```bash
-npm install -S @jswork/next-fetch
+```shell
+npm install @jswork/http-schema-axios
 ```
-
-## options
-| option            | type        | default      | description                                          |
-| ----------------- | ----------- | ------------ | ---------------------------------------------------- |
-| fetch             | Function    | window.fetch | Defult fetch implement                               |
-| dataType          | String      | json         | json/raw/urlencoded/multipart                        |
-| responseType      | String/Null | json         | json/text/blob/null                                  |
-| interceptors      | Array       | []           | Multiple interceptors. eg: { type:'request', fn: xx} |
-| transformRequest  | Function    | nx.stubValue | A special interceptor for only current request.      |
-| transformResponse | Function    | nx.stubValue | A special interceptor for only current response.     |
-| transformError    | Function    | nx.stubValue | A special interceptor for only current error.        |
 
 ## usage
 ```js
-import NxFetch from '@jswork/next-fetch';
+import httpSchemaAxios from '@jswork/http-schema-axios';
 
-const http = NxFetch.getInstance({ responseType:'json' });
-
-http.get('https://api.github.com/users/afeiship').then(res=>{
-  console.log(res);
-});
-
-// {
-//   login: 'afeiship',
-//   id: 3038631,
-//   node_id: 'MDQ6VXNlcjMwMzg2MzE=',
-//   avatar_url: 'https://avatars2.githubusercontent.com/u/3038631?v=4',
-    // .....
-// }
+// usage goes here.
 ```
 
 ## license
-Code released under [the MIT license](https://github.com/afeiship/next-fetch/blob/master/LICENSE.txt).
+Code released under [the MIT license](https://github.com/afeiship/http-schema-axios/blob/master/LICENSE.txt).
 
-[version-image]: https://img.shields.io/npm/v/@jswork/next-fetch
-[version-url]: https://npmjs.org/package/@jswork/next-fetch
+[version-image]: https://img.shields.io/npm/v/@jswork/http-schema-axios
+[version-url]: https://npmjs.org/package/@jswork/http-schema-axios
 
-[license-image]: https://img.shields.io/npm/l/@jswork/next-fetch
-[license-url]: https://github.com/afeiship/next-fetch/blob/master/LICENSE.txt
+[license-image]: https://img.shields.io/npm/l/@jswork/http-schema-axios
+[license-url]: https://github.com/afeiship/http-schema-axios/blob/master/LICENSE.txt
 
-[size-image]: https://img.shields.io/bundlephobia/minzip/@jswork/next-fetch
-[size-url]: https://github.com/afeiship/next-fetch/blob/master/dist/next-fetch.min.js
+[size-image]: https://img.shields.io/bundlephobia/minzip/@jswork/http-schema-axios
+[size-url]: https://github.com/afeiship/http-schema-axios/blob/master/dist/http-schema-axios.min.js
 
-[download-image]: https://img.shields.io/npm/dm/@jswork/next-fetch
-[download-url]: https://www.npmjs.com/package/@jswork/next-fetch
+[download-image]: https://img.shields.io/npm/dm/@jswork/http-schema-axios
+[download-url]: https://www.npmjs.com/package/@jswork/http-schema-axios
