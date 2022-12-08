@@ -39,5 +39,9 @@
     "registry": "https://registry.npmjs.org"
   },
   "boilerplate": "generator-typescript",
-  "homepage": "https://js.work"
+  "homepage": "https://js.work",
+  "dependencies": {
+    "@jswork/http-schema": "^1.0.4",
+    "@jswork/next-axios": "^1.0.2"
+  }
 }

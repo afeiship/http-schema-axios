@@ -11,3 +11,4 @@ dist
 
 .tmp
 docs
+pnpm-lock.yaml
