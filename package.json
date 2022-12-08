@@ -1,6 +1,6 @@
 {
   "name": "@jswork/http-schema-axios",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Http schema for axios.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -43,5 +43,10 @@
   "dependencies": {
     "@jswork/http-schema": "^1.0.4",
     "@jswork/next-axios": "^1.1.1"
-  }
+  },
+  "keywords": [
+    "axios",
+    "http",
+    "schema"
+  ]
 }
