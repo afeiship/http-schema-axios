@@ -57,7 +57,7 @@ export default class LC {
     return LC.val(this.id, this.options);
   }
 
-  public set(inValue) {
-    LC.set(this.id, inValue, this.options);
+  public async set(inValue) {
+    return LC.set(this.id, inValue, this.options);
   }
 }
