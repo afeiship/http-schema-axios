@@ -14,7 +14,7 @@ npm install @jswork/leancloud
 ## usage
 ```js
 import LC from '@jswork/leancloud';
-
+// @tsconfig: { moduleResolution: node }
 // get
 const res = await LC.get('60f77c8e85071346450995d3');
 // value
