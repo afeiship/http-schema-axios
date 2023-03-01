@@ -41,8 +41,8 @@ export default class LC {
     return res?.value;
   }
 
-  private id: string;
-  private options?: Options;
+  public id: string;
+  public options?: Options;
 
   constructor(inId: string, inOptions?: Options) {
     this.id = inId;
