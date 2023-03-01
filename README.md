@@ -20,7 +20,7 @@ const res = await LC.get('60f77c8e85071346450995d3');
 // value
 const value = await LC.val('60f77c8e85071346450995d3');
 // set
-await LC.val('60f77c8e85071346450995d3', 'abc-test');
+await LC.set('60f77c8e85071346450995d3', 'abc-test');
 ```
 
 ## license
