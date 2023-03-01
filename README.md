@@ -1,5 +1,5 @@
-# http-schema-axios
-> Http schema for axios.
+# leancloud
+> Leancloud api.
 
 [![version][version-image]][version-url]
 [![license][license-image]][license-url]
@@ -8,27 +8,27 @@
 
 ## installation
 ```shell
-npm install @jswork/http-schema-axios
+npm install @jswork/leancloud
 ```
 
 ## usage
 ```js
-import httpSchemaAxios from '@jswork/http-schema-axios';
+import leancloud from '@jswork/leancloud';
 
 // usage goes here.
 ```
 
 ## license
-Code released under [the MIT license](https://github.com/afeiship/http-schema-axios/blob/master/LICENSE.txt).
+Code released under [the MIT license](https://github.com/afeiship/leancloud/blob/master/LICENSE.txt).
 
-[version-image]: https://img.shields.io/npm/v/@jswork/http-schema-axios
-[version-url]: https://npmjs.org/package/@jswork/http-schema-axios
+[version-image]: https://img.shields.io/npm/v/@jswork/leancloud
+[version-url]: https://npmjs.org/package/@jswork/leancloud
 
-[license-image]: https://img.shields.io/npm/l/@jswork/http-schema-axios
-[license-url]: https://github.com/afeiship/http-schema-axios/blob/master/LICENSE.txt
+[license-image]: https://img.shields.io/npm/l/@jswork/leancloud
+[license-url]: https://github.com/afeiship/leancloud/blob/master/LICENSE.txt
 
-[size-image]: https://img.shields.io/bundlephobia/minzip/@jswork/http-schema-axios
-[size-url]: https://github.com/afeiship/http-schema-axios/blob/master/dist/http-schema-axios.min.js
+[size-image]: https://img.shields.io/bundlephobia/minzip/@jswork/leancloud
+[size-url]: https://github.com/afeiship/leancloud/blob/master/dist/leancloud.min.js
 
-[download-image]: https://img.shields.io/npm/dm/@jswork/http-schema-axios
-[download-url]: https://www.npmjs.com/package/@jswork/http-schema-axios
+[download-image]: https://img.shields.io/npm/dm/@jswork/leancloud
+[download-url]: https://www.npmjs.com/package/@jswork/leancloud

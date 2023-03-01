@@ -1,7 +1,7 @@
 {
-  "name": "@jswork/http-schema-axios",
-  "version": "1.0.1",
-  "description": "Http schema for axios.",
+  "name": "@jswork/leancloud",
+  "version": "1.0.0",
+  "description": "Leancloud api.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "typings": "dist/esm/index.d.ts",
@@ -41,12 +41,6 @@
   "boilerplate": "generator-typescript",
   "homepage": "https://js.work",
   "dependencies": {
-    "@jswork/http-schema": "^1.0.4",
-    "@jswork/next-axios": "^1.1.1"
-  },
-  "keywords": [
-    "axios",
-    "http",
-    "schema"
-  ]
+    "node-fetch": "2.6.7"
+  }
 }
