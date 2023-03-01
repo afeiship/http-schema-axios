@@ -13,9 +13,14 @@ npm install @jswork/leancloud
 
 ## usage
 ```js
-import leancloud from '@jswork/leancloud';
+import LC from '@jswork/leancloud';
 
-// usage goes here.
+// get
+const res = await LC.get('60f77c8e85071346450995d3');
+// value
+const value = await LC.val('60f77c8e85071346450995d3');
+// set
+await LC.val('60f77c8e85071346450995d3', 'abc-test');
 ```
 
 ## license
