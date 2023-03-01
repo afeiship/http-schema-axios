@@ -1,12 +1,9 @@
 import LC from '../src';
 
 describe('api.basic', () => {
-  beforeEach(() => {
-    process.env.LC_ID = '8alqie7r';
-  });
+  const test_id = '60f77c8e85071346450995d3';
 
   test('lc get/set/val static api', async () => {
-    const test_id = '60f77c8e85071346450995d3';
     await LC.set(test_id, 'test_value');
     const res = await LC.get(test_id);
     const resv = await LC.val(test_id);
@@ -15,7 +12,6 @@ describe('api.basic', () => {
   });
 
   test('lc get/set/instance api:', async () => {
-    const test_id = '60f77c8e85071346450995d3';
     const instance = new LC(test_id);
 
     await instance.set('test_value');
