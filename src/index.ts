@@ -13,7 +13,7 @@ const defaults = {
 };
 
 export default class {
-  private static getHeaders(inOptions: Options) {
+  public static getHeaders(inOptions: Options) {
     return {
       'X-LC-Id': inOptions.lcId,
       'X-LC-Key': inOptions.lcKey,
