@@ -7,13 +7,13 @@ interface Options {
 }
 
 const defaults = {
-  baseURL: 'https://8alqie7r.lc-cn-n1-shared.com/1.1/classes/options',
+  baseURL: process.env.LC_URL,
   lcId: process.env.LC_ID,
   lcKey: process.env.LC_KEY,
 };
 
-export default class {
-  public static getHeaders(inOptions: Options) {
+export default class LC {
+  public static headers(inOptions: Options) {
     return {
       'X-LC-Id': inOptions.lcId,
       'X-LC-Key': inOptions.lcKey,
@@ -24,14 +24,14 @@ export default class {
   public static async get(inId: string, inOptions?: Options) {
     const options = { ...defaults, ...inOptions };
     const url = `${options.baseURL}/${inId}`;
-    const headers = this.getHeaders(options);
+    const headers = this.headers(options);
     return fetch(url, { headers }).then((res) => res.json());
   }
 
   public static async set(inId: string, inValue, inOptions?: Options) {
     const options = { ...defaults, ...inOptions };
     const url = `${options.baseURL}/${inId}`;
-    const headers = this.getHeaders(options);
+    const headers = this.headers(options);
     const body = JSON.stringify({ value: inValue });
     return fetch(url, { method: 'PUT', headers, body }).then((res) => res.json());
   }
@@ -39,5 +39,25 @@ export default class {
   public static async val(inId: string, inOptions?: Options) {
     const res = await this.get(inId, inOptions);
     return res?.value;
+  }
+
+  private id: string;
+  private options?: Options;
+
+  constructor(inId: string, inOptions?: Options) {
+    this.id = inId;
+    this.options = inOptions;
+  }
+
+  public get() {
+    return LC.get(this.id, this.options);
+  }
+
+  public val() {
+    return LC.val(this.id, this.options);
+  }
+
+  public set(inValue) {
+    LC.set(this.id, inValue, this.options);
   }
 }
