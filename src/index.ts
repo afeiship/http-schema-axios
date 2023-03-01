@@ -49,11 +49,11 @@ export default class LC {
     this.options = inOptions;
   }
 
-  public get() {
+  public async get() {
     return LC.get(this.id, this.options);
   }
 
-  public val() {
+  public async val() {
     return LC.val(this.id, this.options);
   }
 
