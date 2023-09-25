@@ -7,9 +7,9 @@ interface Options {
 }
 
 const defaults = {
-  baseURL: process.env.LC_URL,
-  lcId: process.env.LC_ID,
-  lcKey: process.env.LC_KEY,
+  baseURL: process.env.LEANCLOUD_URL,
+  lcId: process.env.LEANCLOUD_ID,
+  lcKey: process.env.LEANCLOUD_KEY,
 };
 
 export default class LC {
