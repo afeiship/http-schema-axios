@@ -1,4 +1,4 @@
-export interface Options {
+export interface LcOptions {
   baseURL?: string;
   lcId?: string;
   lcKey?: string;
@@ -11,7 +11,7 @@ const defaults = {
 };
 
 export default class LC {
-  public static headers(inOptions: Options) {
+  public static headers(inOptions: LcOptions) {
     return {
       'X-LC-Id': inOptions.lcId,
       'X-LC-Key': inOptions.lcKey,
@@ -19,30 +19,30 @@ export default class LC {
     };
   }
 
-  public static async get(inId: string, inOptions?: Options) {
+  public static async get(inId: string, inOptions?: LcOptions) {
     const options = { ...defaults, ...inOptions };
     const url = `${options.baseURL}/${inId}`;
-    const headers = this.headers(options);
+    const headers = this.headers(options) as any;
     return fetch(url, { headers }).then((res) => res.json());
   }
 
-  public static async set(inId: string, inValue, inOptions?: Options) {
+  public static async set(inId: string, inValue, inOptions?: LcOptions) {
     const options = { ...defaults, ...inOptions };
     const url = `${options.baseURL}/${inId}`;
-    const headers = this.headers(options);
+    const headers = this.headers(options) as any;
     const body = JSON.stringify({ value: inValue });
     return fetch(url, { method: 'PUT', headers, body }).then((res) => res.json());
   }
 
-  public static async val(inId: string, inOptions?: Options) {
+  public static async val(inId: string, inOptions?: LcOptions) {
     const res = await this.get(inId, inOptions);
     return res?.value;
   }
 
   public id: string;
-  public options?: Options;
+  public options?: LcOptions;
 
-  constructor(inId: string, inOptions?: Options) {
+  constructor(inId: string, inOptions?: LcOptions) {
     this.id = inId;
     this.options = inOptions;
   }
