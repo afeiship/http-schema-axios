@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-interface Options {
+export interface Options {
   baseURL?: string;
   lcId?: string;
   lcKey?: string;
